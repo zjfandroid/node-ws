@@ -1,722 +1,376 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Circle (CRCL) 投资分析报告 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
         body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            background-color: #FFFFFF;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem; /* 20px */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
             position: relative;
         }
-
-        nav ul li a:hover {
-            color: var(--accent);
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
         }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0), rgba(168, 85, 247, 0.05));
         }
-
-        nav ul li a:hover::after {
-            width: 100%;
+        .highlight-gradient-teal {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0), rgba(20, 184, 166, 0.05));
         }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
+        .highlight-gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
         }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        .highlight-gradient-red {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- 标题卡片 -->
+            <div class="card md:col-span-4 md:row-span-1 p-8 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-sack-dollar text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-500 text-sm font-semibold">CRYPTOCURRENCY RESEARCH</div>
+                            <div class="text-gray-800 text-3xl md:text-4xl font-black mt-1">Circle (CRCL) 投资分析报告</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-lg text-gray-600">
+                        稳定币第一股的估值分析与投资前景展望
+                    </div>
                 </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            </div>
+
+            <!-- 公司概况卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-purple-600 font-bold text-sm">COMPANY OVERVIEW</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">公司概况</div>
+                    <div class="mt-4 text-gray-600">
+                        <p class="mb-2">Circle Internet Group (NYSE: CRCL) 作为全球第二大稳定币发行商，2025年6月成功在纽交所上市，成为"稳定币第一股"。</p>
+                        <p>核心产品USDC流通量达743.9亿美元，市场份额28%，正加速扩大市场地位。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 市值卡片 -->
+            <div class="card md:col-span-1 md:row-span-1 p-6 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative">
+                    <div class="text-teal-600 font-bold text-sm">MARKET CAP</div>
+                    <div class="text-5xl font-black text-gray-800 mt-2">300亿</div>
+                    <div class="text-lg text-gray-500 mt-1">美元</div>
+                    <div class="mt-3 text-sm text-gray-500">
+                        股价: $220-230
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行业背景卡片 -->
+            <div class="card md:col-span-1 md:row-span-1 p-6 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <div class="text-orange-600 font-bold text-sm">INDUSTRY</div>
+                    <div class="text-5xl font-black text-gray-800 mt-2">3000亿+</div>
+                    <div class="text-lg text-gray-500 mt-1">美元</div>
+                    <div class="mt-3 text-sm text-gray-500">
+                        全球稳定币总市值
+                    </div>
+                </div>
+            </div>
+
+            <!-- 财务表现卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-blue-600 font-bold text-sm">Q2 2025 FINANCIALS</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">核心财务表现</div>
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <div class="text-gray-500 text-sm">总收入</div>
+                            <div class="text-2xl font-bold text-gray-800 mt-1">6.58亿美元</div>
+                            <div class="text-green-500 text-sm font-semibold mt-1">+53% YoY</div>
+                        </div>
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <div class="text-gray-500 text-sm">调整后EBITDA</div>
+                            <div class="text-2xl font-bold text-gray-800 mt-1">1.26亿美元</div>
+                            <div class="text-green-500 text-sm font-semibold mt-1">+52% YoY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USDC数据卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-purple-600 font-bold text-sm">USDC PERFORMANCE</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">USDC业务数据</div>
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <div class="text-gray-500 text-sm">流通量</div>
+                            <div class="text-2xl font-bold text-gray-800 mt-1">743.9亿美元</div>
+                            <div class="text-green-500 text-sm font-semibold mt-1">+21.3% QoQ</div>
+                        </div>
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <div class="text-gray-500 text-sm">市场份额</div>
+                            <div class="text-2xl font-bold text-gray-800 mt-1">28%</div>
+                            <div class="text-green-500 text-sm font-semibold mt-1">+595bps YoY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 市场份额图表卡片 -->
+            <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative">
+                    <div class="text-teal-600 font-bold text-sm">MARKET SHARE</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">稳定币市场份额分布</div>
+                    <div class="mt-4 flex-grow h-64">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行业趋势卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <div class="text-orange-600 font-bold text-sm">INDUSTRY TRENDS</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">行业发展趋势</div>
+                    <div class="mt-4 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-arrow-trend-up text-orange-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">市场规模爆发</div>
+                                <div class="text-sm text-gray-600">2025年突破3000亿美元，预计2030年达1.9万亿美元</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-building-shield text-orange-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">监管框架完善</div>
+                                <div class="text-sm text-gray-600">美国GENIUS法案和欧盟MiCA法规提供明确指引</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-handshake text-orange-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">机构采用激增</div>
+                                <div class="text-sm text-gray-600">90%机构正在使用或探索稳定币，B2B支付增长113%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 估值方法卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-blue-600 font-bold text-sm">VALUATION METHODS</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">估值方法</div>
+                    <div class="mt-4 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold text-gray-800">P/S倍数法</div>
+                            <div class="text-lg font-bold text-gray-800">$201-252</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold text-gray-800">DCF法</div>
+                            <div class="text-lg font-bold text-gray-800">$296-370</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold text-gray-800">市场份额法</div>
+                            <div class="text-lg font-bold text-gray-800">$350</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold text-gray-800">用户价值法</div>
+                            <div class="text-lg font-bold text-gray-800">$370-444</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 财务预测图表卡片 -->
+            <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-purple-600 font-bold text-sm">REVENUE FORECAST</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">收入预测 (2025-2030)</div>
+                    <div class="mt-4 flex-grow h-64">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投资建议卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative">
+                    <div class="text-teal-600 font-bold text-sm">INVESTMENT RECOMMENDATION</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">投资建议</div>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="bg-teal-100 text-teal-800 font-bold text-lg px-4 py-2 rounded-lg">买入</div>
+                        <div class="text-gray-600">
+                            <div class="font-semibold">目标价区间</div>
+                            <div class="text-2xl font-bold text-gray-800">$280-350</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        基于行业增长确定性高、竞争地位稳固、新业务打开成长空间等因素，给予"买入"评级。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 风险提示卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <div class="text-red-600 font-bold text-sm">RISK FACTORS</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">风险提示</div>
+                    <div class="mt-4 grid grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-gavel text-red-500"></i>
+                            <span class="text-sm text-gray-700">监管政策变化</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-users text-red-500"></i>
+                            <span class="text-sm text-gray-700">竞争格局演变</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-red-500"></i>
+                            <span class="text-sm text-gray-700">技术发展不确定性</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-down-wide-short text-red-500"></i>
+                            <span class="text-sm text-gray-700">利率风险</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结论卡片 -->
+            <div class="card md:col-span-4 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-blue-600 font-bold text-sm">CONCLUSION</div>
+                    <div class="text-2xl font-bold text-gray-800 mt-1">结论与展望</div>
+                    <div class="mt-4 text-gray-600">
+                        Circle作为全球第二大稳定币发行商，正站在稳定币行业爆发式增长的历史机遇期。基于我们的分析，Circle的合理估值区间为350-450亿美元，对应股价259-333美元。考虑到公司的成长性和行业地位，我们给予"买入"评级，目标价300美元。随着市场份额提升、新业务贡献增加和国际化扩张，Circle有望充分把握稳定币市场的历史性机遇。
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+    </div>
 </body>
+<script>
+    // 市场份额图表
+    const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+    const marketShareChart = new Chart(marketShareCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['USDT', 'USDC', 'DAI', '其他'],
+            datasets: [{
+                data: [62, 28, 4, 6],
+                backgroundColor: [
+                    '#F59E0B', // Amber
+                    '#8B5CF6', // Purple
+                    '#14B8A6', // Teal
+                    '#6B7280'  // Gray
+                ],
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        font: {
+                            family: "'Poppins', 'Noto Sans SC', sans-serif"
+                        }
+                    }
+                }
+            },
+            cutout: '60%'
+        }
+    });
 
+    // 收入预测图表
+    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(revenueCtx, {
+        type: 'bar',
+        data: {
+            labels: ['2025', '2026', '2027', '2028', '2030'],
+            datasets: [{
+                label: '收入 (亿美元)',
+                data: [25, 34, 44, 58, 190],
+                backgroundColor: '#8B5CF6',
+                borderRadius: 8,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    ticks: {
+                        font: {
+                            family: "'Poppins', 'Noto Sans SC', sans-serif"
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            family: "'Poppins', 'Noto Sans SC', sans-serif"
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
 </html>
